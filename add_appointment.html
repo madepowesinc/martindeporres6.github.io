@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clinic Management System</title>
+  <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
+  <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style2.css">
+<!--contact-->
+  <section id="contact" class="section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="ser-title">New Appointments</h2>
+          <hr class="botm-line">
+        </div>
+        <div class="col-md-4 col-sm-4">
+          
+        </div>
+        <div class="col-md-8 col-sm-8 marb20">
+          <div class="contact-info">
+            <h3 class="cnt-ttl">Add New appointment</h3>
+            <div class="space"></div>
+            
+            <form action="add_appointment.php" method="post" class="contactForm">
+              <div class="form-group">
+                <input type="text" name="patient_id" class="form-control br-radius-zero" placeholder="Patient ID" data-msg="Please enter at least 4 chars" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control br-radius-zero" name="name" placeholder="Patient Name" data-msg="Please enter a Name" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="number" class="form-control br-radius-zero" name="age" placeholder="Age" data-msg="Please enter age" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control br-radius-zero" name="gender" placeholder="Gender" data-msg="Please enter gender" />
+                <div class="validation"></div>
+              </div>
+			  <div class="form-group">
+                <input type="text" class="form-control br-radius-zero" name="occupation" placeholder="Occupation" data-msg="Please enter occupation" />
+                <div class="validation"></div>
+              </div>
+			  <div class="form-group">
+                <input type="number" class="form-control br-radius-zero" name="contact_number" placeholder="Contact Number" data-msg="Please enter contact" />
+                <div class="validation"></div>
+              </div>
+			  <div class="form-group">
+                <input type="text" class="form-control br-radius-zero" name="address" placeholder="Address" data-msg="Please enter address" />
+                <div class="validation"></div>
+              </div>
+			  <div class="form-group">
+                <input type="date" class="form-control br-radius-zero" name="date" placeholder="Date of Next appointment" data-msg="Please enter date for next appointment" />
+                <div class="validation"></div>
+              </div>         
+                <input type="submit" name="submit" value="Add Appointment" class="btn btn-form">
+             
+            </form>
+			<?php
+
+if (isset($_POST['submit'])){
+$patient_id=$_POST['patient_id'];
+$name=$_POST['name'];
+$age=$_POST['age'];
+$gender=$_POST['gender'];
+$occupation=$_POST['occupation'];
+$contact_number=$_POST['contact_number'];
+$address=$_POST['address'];
+$date=$_POST['date'];
+
+$con=mysqli_connect("localhost","root","") or die(mysql_error());
+$db=mysqli_select_db("clinic",$con)or die(mysql_error());
+
+$str="insert into appointment values('$patient_id','$name','$age','$gender','$occupation','$contact_number','$address','$date')";
+$res=mysqli_query($str)or die(mysql_error());
+if($res>=0)
+{
+echo'<br><br><b>Thank you for registeration !! <br>';
+} else
+	echo "error";
+}
+?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ contact-->
+    <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.easing.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="contactform/contactform.js"></script>
+
+</body>
+
+</html>
